@@ -117,6 +117,8 @@ public class AStarScript : MonoBehaviour {
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;
+
+				//this determines priority, we want low heuristic for best possible node
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
 
 				frontier.Enqueue(next, priority);
