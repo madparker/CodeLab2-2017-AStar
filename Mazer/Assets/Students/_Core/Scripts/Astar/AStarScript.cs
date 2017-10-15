@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//somewhere in here there is something that can lower the amount of nodes checked
 public class AStarScript : MonoBehaviour {
 
 	public bool check = true;
@@ -61,10 +62,10 @@ public class AStarScript : MonoBehaviour {
 
 			visited.Add(current);
 
-			pos[(int)current.x, (int)current.y].transform.localScale = 
-				Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+            pos[(int)current.x, (int)current.y].transform.localScale =
+                Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-			if(current.Equals(goal)){
+            if (current.Equals(goal)){
 				Debug.Log("GOOOAL!");
 				break;
 			}
@@ -117,6 +118,8 @@ public class AStarScript : MonoBehaviour {
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;
+                //we want low heuristic for best possible score
+                //exploring lowest priority first gets you there quicker
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
 
 				frontier.Enqueue(next, priority);
