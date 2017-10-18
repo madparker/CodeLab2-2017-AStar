@@ -60,23 +60,38 @@ public class AStarScript : MonoBehaviour {
 			exploredNodes++;
 			current = frontier.Dequeue();
 
-			visited.Add(current);
+            if (current.Equals(goal))
+            {
+                Debug.Log("GOOOAL!");
+                break;
+            }
 
-            pos[(int)current.x, (int)current.y].transform.localScale =
-                Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+            if (!visited.Contains(current))
+            {
+                visited.Add(current);
+            }
+            pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale =
+                Vector3.Scale(pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-            if (current.Equals(goal)){
-				Debug.Log("GOOOAL!");
-				break;
-			}
-			
-			for(int x = -1; x < 2; x+=2){
-				AddNodesToFrontier((int)current.x + x, (int)current.y);
-			}
-			for(int y = -1; y < 2; y+=2){
-				AddNodesToFrontier((int)current.x, (int)current.y + y);
-			}
-		}
+            for (int x = -1; x < 2; x += 2)
+            {
+                AddNodesToFrontier((int)visited[visited.Count - 1].x + x, (int)visited[visited.Count - 1].y);
+            }
+            for (int y = -1; y < 2; y += 2)
+            {
+                AddNodesToFrontier((int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y + y);
+            }
+
+            //         pos[(int)current.x, (int)current.y].transform.localScale =
+            //             Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+
+            //for(int x = -1; x < 2; x+=2){
+            //	AddNodesToFrontier((int)current.x + x, (int)current.y);
+            //}
+            //for(int y = -1; y < 2; y+=2){
+            //	AddNodesToFrontier((int)current.x, (int)current.y + y);
+            //}
+        }
 
 		current = goal;
 
