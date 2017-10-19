@@ -56,41 +56,48 @@ public class AStarScript : MonoBehaviour {
 
 		int exploredNodes = 0;
 
-		while(frontier.Count != 0){
+		while(frontier.Count != 0){ 
 			exploredNodes++;
-			current = frontier.Dequeue();
-
-            if (current.Equals(goal))
-            {
-                Debug.Log("GOOOAL!");
-                break;
-            }
-
+			current = frontier.Dequeue(); 
             if (!visited.Contains(current))
             {
+                if (current.Equals(goal))
+                {
+                    Debug.Log("GOOOAL!");
+                    break;
+                }
                 visited.Add(current);
-            }
-            pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale =
-                Vector3.Scale(pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-            for (int x = -1; x < 2; x += 2)
-            {
-                AddNodesToFrontier((int)visited[visited.Count - 1].x + x, (int)visited[visited.Count - 1].y);
-            }
-            for (int y = -1; y < 2; y += 2)
-            {
-                AddNodesToFrontier((int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y + y);
-            }
+                #region funny diaganol code
+                //if (!visited.Contains(current))
+                //{
+                //    visited.Add(current);
+                //}
+                //pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale =
+                //    Vector3.Scale(pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-            //         pos[(int)current.x, (int)current.y].transform.localScale =
-            //             Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+                //for (int x = -1; x < 2; x += 2)
+                //{
+                //    AddNodesToFrontier((int)visited[visited.Count - 1].x + x, (int)visited[visited.Count - 1].y);
+                //}
+                //for (int y = -1; y < 2; y += 2)
+                //{
+                //    AddNodesToFrontier((int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y + y);
+                //}
+                #endregion
+                pos[(int)current.x, (int)current.y].transform.localScale =
+                    Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-            //for(int x = -1; x < 2; x+=2){
-            //	AddNodesToFrontier((int)current.x + x, (int)current.y);
-            //}
-            //for(int y = -1; y < 2; y+=2){
-            //	AddNodesToFrontier((int)current.x, (int)current.y + y);
-            //}
+                for (int x = -1; x < 2; x += 2)
+                {
+                    AddNodesToFrontier((int)current.x + x, (int)current.y);
+                }
+                for (int y = -1; y < 2; y += 2)
+                {
+                    AddNodesToFrontier((int)current.x, (int)current.y + y);
+                }
+            }
+            else Debug.Log("Tried to add the same node twice");
         }
 
 		current = goal;
@@ -133,8 +140,6 @@ public class AStarScript : MonoBehaviour {
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;
-                //we want low heuristic for best possible score
-                //exploring lowest priority first gets you there quicker
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
 
 				frontier.Enqueue(next, priority);
