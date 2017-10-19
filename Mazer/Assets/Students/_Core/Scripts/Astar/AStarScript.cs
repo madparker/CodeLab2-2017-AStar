@@ -61,8 +61,8 @@ public class AStarScript : MonoBehaviour {
 
 			visited.Add(current);
 
-			pos[(int)current.x, (int)current.y].transform.localScale = 
-				Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+			//pos[(int)current.x, (int)current.y].transform.localScale = 
+			//	Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
 			if(current.Equals(goal)){
 				Debug.Log("GOOOAL!");
@@ -118,8 +118,7 @@ public class AStarScript : MonoBehaviour {
 			{
 				costSoFar[next] = new_cost;
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
-
-				frontier.Enqueue(next, priority);
+                frontier.Enqueue(next, priority);
 				cameFrom[next] = current;
 			}
 		}
