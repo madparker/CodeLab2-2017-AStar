@@ -27,6 +27,7 @@ public class AStarScript : MonoBehaviour {
 
 	List<Vector3> visited = new List<Vector3>();
 
+
 	// Use this for initialization
 	protected virtual void Start () {
 		InitAstar();
@@ -57,18 +58,28 @@ public class AStarScript : MonoBehaviour {
 
 		while(frontier.Count != 0){
 			exploredNodes++;
+
 			current = frontier.Dequeue();
+
+			if (visited.Contains (current))
+				continue;
 
 			visited.Add(current);
 
-			pos[(int)current.x, (int)current.y].transform.localScale = 
-				Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
-
+			//early exit
 			if(current.Equals(goal)){
 				Debug.Log("GOOOAL!");
 				break;
 			}
-			
+
+
+//			if (cameFrom.ContainsValue (current))
+//				continue;
+
+			//showing how many times the grid has been searched 
+			StartCoroutine(Scale( (int)current.x, (int)current.y, exploredNodes/20f));
+
+			//Check Neighbors
 			for(int x = -1; x < 2; x+=2){
 				AddNodesToFrontier((int)current.x + x, (int)current.y);
 			}
@@ -84,6 +95,7 @@ public class AStarScript : MonoBehaviour {
 		int i = 0;
 		float score = 0;
 
+		//find the right path and draw it using line renderer
 		while(!current.Equals(start)){
 			line.positionCount++;
 			
@@ -108,6 +120,12 @@ public class AStarScript : MonoBehaviour {
 		Debug.Log(path.pathName + " Total Score: " + (score + exploredNodes));
 	}
 
+	IEnumerator Scale (int x, int y, float g_delay) {
+		yield return new WaitForSeconds (g_delay);
+					pos[x, y].transform.localScale = 
+						Vector3.Scale(pos[x, y].transform.localScale, new Vector3(.8f, .8f, .8f));
+	}
+
 	void AddNodesToFrontier(int x, int y){
 		if(x >=0 && x < gridWidth && 
 		   y >=0 && y < gridHeight)
@@ -117,6 +135,7 @@ public class AStarScript : MonoBehaviour {
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;
+
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
 
 				frontier.Enqueue(next, priority);
