@@ -70,10 +70,12 @@ public class AStarScript : MonoBehaviour {
 			}
 			
 			for(int x = -1; x < 2; x+=2){
-				AddNodesToFrontier((int)current.x + x, (int)current.y);
+                //if(!visited.Contains(new Vector3((int)current.x + x, (int)current.y)))
+	    			AddNodesToFrontier((int)current.x + x, (int)current.y);
 			}
 			for(int y = -1; y < 2; y+=2){
-				AddNodesToFrontier((int)current.x, (int)current.y + y);
+                //if(!visited.Contains(new Vector3((int)current.x, (int)current.y + y)))
+                AddNodesToFrontier((int)current.x, (int)current.y + y);
 			}
 		}
 
