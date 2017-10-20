@@ -112,7 +112,7 @@ public class jAStar : AStarScript
             if (!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
             {
                 costSoFar[next] = new_cost;
-                float priority = new_cost + hueristic.Hueristic((int)next.x, (int)next.y, start, goal, gridScript);
+				float priority = new_cost + ((jf3023Hueristic)hueristic).Hueristic((int)next.x, (int)next.y, start, goal, gridScript);
 
                 frontier.Enqueue(next, priority);
                 cameFrom[next] = current;

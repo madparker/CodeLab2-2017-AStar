@@ -21,7 +21,7 @@ public class jf3023Hueristic : HueristicScript {
         return hueristic;
     }
 
-    public override float Hueristic(int x, int y, jAStar.Node start, jAStar.Node goal, GridScript gridScript)
+    public float Hueristic(int x, int y, jAStar.Node start, jAStar.Node goal, GridScript gridScript)
     {
         float dx = Mathf.Abs(x - goal.x);
         float dy = Mathf.Abs(y - goal.y);

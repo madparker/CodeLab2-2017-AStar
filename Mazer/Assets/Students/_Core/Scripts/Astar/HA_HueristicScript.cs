@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HA_HueristicScript : MonoBehaviour {
+public class HA_HueristicScript : HueristicScript {
 
-	public virtual float Hueristic(int x, int y, Vector3 start, Vector3 goal, GridScript gridScript){
+	public override float Hueristic(int x, int y, Vector3 start, Vector3 goal, GridScript gridScript){
 		//		return Random.Range(0, 500);
 		float xDistance = Mathf.Abs (x - goal.x);
 		float yDistance = Mathf.Abs (y - goal.y);

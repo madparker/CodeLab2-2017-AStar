@@ -12,7 +12,7 @@ public class lrHeuristicScript : HueristicScript {
 
 		heur = (Mathf.Abs (goal.x - x) + Mathf.Abs (goal.y - y)) * gridScript.costs [0];
 
-		Debug.Log (heur);
+//		Debug.Log (heur);
 		return heur;
 
 

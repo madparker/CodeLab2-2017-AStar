@@ -29,7 +29,15 @@ public class AStarScript : MonoBehaviour {
 	List<Vector3> visited = new List<Vector3>();
 
 	// Use this for initialization
+
+	void Awake(){
+
+		gridScript = GameObject.Find("Grid").GetComponent<GridScript>();
+		hueristic = GetComponentInChildren<HueristicScript>();
+	}
+
 	protected virtual void Start () {
+
 		InitAstar();
 	}
 
@@ -85,8 +93,8 @@ public class AStarScript : MonoBehaviour {
                 //    AddNodesToFrontier((int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y + y);
                 //}
                 #endregion
-                pos[(int)current.x, (int)current.y].transform.localScale =
-                    Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
+//                pos[(int)current.x, (int)current.y].transform.localScale =
+//                    Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
                 for (int x = -1; x < 2; x += 2)
                 {
