@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &348950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -416,9 +416,9 @@ GameObject:
   - component: {fileID: 1166619711}
   - component: {fileID: 1166619710}
   - component: {fileID: 1166619709}
+  - component: {fileID: 1166619706}
   - component: {fileID: 1166619708}
   - component: {fileID: 1166619707}
-  - component: {fileID: 1166619706}
   m_Layer: 0
   m_Name: Princess Andrew
   m_TagString: Untagged
