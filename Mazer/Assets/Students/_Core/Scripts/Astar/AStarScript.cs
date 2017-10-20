@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//somewhere in here there is something that can lower the amount of nodes checked
 public class AStarScript : MonoBehaviour {
 
 	public bool check = true;
@@ -26,7 +27,6 @@ public class AStarScript : MonoBehaviour {
 	protected Vector3 current;
 
 	List<Vector3> visited = new List<Vector3>();
-
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -56,37 +56,49 @@ public class AStarScript : MonoBehaviour {
 
 		int exploredNodes = 0;
 
-		while(frontier.Count != 0){
+		while(frontier.Count != 0){ 
 			exploredNodes++;
+			current = frontier.Dequeue(); 
+            if (!visited.Contains(current)) 
+            {
+                if (current.Equals(goal))
+                {
+                    Debug.Log("GOOOAL!");
+                    break;
+                }
+                visited.Add(current);
 
-			current = frontier.Dequeue();
+                #region funny diaganol code
+                //if (!visited.Contains(current))
+                //{
+                //    visited.Add(current);
+                //}
+                //pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale =
+                //    Vector3.Scale(pos[(int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-			if (visited.Contains (current))
-				continue;
+                //for (int x = -1; x < 2; x += 2)
+                //{
+                //    AddNodesToFrontier((int)visited[visited.Count - 1].x + x, (int)visited[visited.Count - 1].y);
+                //}
+                //for (int y = -1; y < 2; y += 2)
+                //{
+                //    AddNodesToFrontier((int)visited[visited.Count - 1].x, (int)visited[visited.Count - 1].y + y);
+                //}
+                #endregion
+                pos[(int)current.x, (int)current.y].transform.localScale =
+                    Vector3.Scale(pos[(int)current.x, (int)current.y].transform.localScale, new Vector3(.8f, .8f, .8f));
 
-			visited.Add(current);
-
-			//early exit
-			if(current.Equals(goal)){
-				Debug.Log("GOOOAL!");
-				break;
-			}
-
-
-//			if (cameFrom.ContainsValue (current))
-//				continue;
-
-			//showing how many times the grid has been searched 
-			StartCoroutine(Scale( (int)current.x, (int)current.y, exploredNodes/20f));
-
-			//Check Neighbors
-			for(int x = -1; x < 2; x+=2){
-				AddNodesToFrontier((int)current.x + x, (int)current.y);
-			}
-			for(int y = -1; y < 2; y+=2){
-				AddNodesToFrontier((int)current.x, (int)current.y + y);
-			}
-		}
+                for (int x = -1; x < 2; x += 2)
+                {
+                    AddNodesToFrontier((int)current.x + x, (int)current.y);
+                }
+                for (int y = -1; y < 2; y += 2)
+                {
+                    AddNodesToFrontier((int)current.x, (int)current.y + y);
+                }
+            }
+            else Debug.Log("Tried to add the same node twice");
+        }
 
 		current = goal;
 
@@ -95,7 +107,6 @@ public class AStarScript : MonoBehaviour {
 		int i = 0;
 		float score = 0;
 
-		//find the right path and draw it using line renderer
 		while(!current.Equals(start)){
 			line.positionCount++;
 			
@@ -120,12 +131,6 @@ public class AStarScript : MonoBehaviour {
 		Debug.Log(path.pathName + " Total Score: " + (score + exploredNodes));
 	}
 
-	IEnumerator Scale (int x, int y, float g_delay) {
-		yield return new WaitForSeconds (g_delay);
-					pos[x, y].transform.localScale = 
-						Vector3.Scale(pos[x, y].transform.localScale, new Vector3(.8f, .8f, .8f));
-	}
-
 	void AddNodesToFrontier(int x, int y){
 		if(x >=0 && x < gridWidth && 
 		   y >=0 && y < gridHeight)
@@ -135,12 +140,7 @@ public class AStarScript : MonoBehaviour {
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;
-
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
-                /*
-                 * for a good time...
-                * priority *= -1f;
-                */
 				frontier.Enqueue(next, priority);
 				cameFrom[next] = current;
 			}
