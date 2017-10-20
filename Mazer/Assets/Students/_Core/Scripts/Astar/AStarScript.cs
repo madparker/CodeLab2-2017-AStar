@@ -7,7 +7,7 @@ public class AStarScript : MonoBehaviour {
 	public bool check = true;
 
 	public GridScript gridScript;
-	public HueristicScript hueristic;
+	public HA_HueristicScript hueristic;
 
 	protected int gridWidth;
 	protected int gridHeight;
