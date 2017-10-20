@@ -403,48 +403,43 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4071174675868954, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    - target: {fileID: 4452253496106300, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114729380723437778, guid: 741cc073e5d524f6883ed5d9cbbe79a9,
+    - target: {fileID: 114426272561829358, guid: 0fa3b1b5514104de49f6f9f27f34a619,
         type: 2}
       propertyPath: gridScript
       value: 
       objectReference: {fileID: 1792175001}
-    - target: {fileID: 1203294647573850, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
-      propertyPath: m_Name
-      value: Princess-dk1447
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114791276106319712, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 741cc073e5d524f6883ed5d9cbbe79a9, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0fa3b1b5514104de49f6f9f27f34a619, type: 2}
   m_IsPrefabParent: 0
