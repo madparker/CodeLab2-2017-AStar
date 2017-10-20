@@ -137,7 +137,10 @@ public class AStarScript : MonoBehaviour {
 				costSoFar[next] = new_cost;
 
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
-
+                /*
+                 * for a good time...
+                * priority *= -1f;
+                */
 				frontier.Enqueue(next, priority);
 				cameFrom[next] = current;
 			}
