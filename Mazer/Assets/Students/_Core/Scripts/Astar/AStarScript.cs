@@ -59,7 +59,7 @@ public class AStarScript : MonoBehaviour {
 		while(frontier.Count != 0){ 
 			exploredNodes++;
 			current = frontier.Dequeue(); 
-            if (!visited.Contains(current))
+            if (!visited.Contains(current)) 
             {
                 if (current.Equals(goal))
                 {
@@ -141,7 +141,6 @@ public class AStarScript : MonoBehaviour {
 			{
 				costSoFar[next] = new_cost;
 				float priority = new_cost + hueristic.Hueristic(x, y, start, goal, gridScript);
-
 				frontier.Enqueue(next, priority);
 				cameFrom[next] = current;
 			}

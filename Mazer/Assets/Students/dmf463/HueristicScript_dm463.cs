@@ -27,6 +27,9 @@ public class HueristicScript_dm463 : HueristicScript {
         float nodesCheck = 0;
         GameObject[,] pos = gridScript.GetGrid();
 
+        //get the movementCost for each node above, below, left, and right of the main node
+        //add those together and then divide that by the nodes checked to get the average
+        //but also divide the nodesChecked by 5 because that's the number that gave me the lowest nodes
         if (x > 0 && x < gridScript.gridWidth && y + 1 > 0 && y + 1 < gridScript.gridHeight)
         {
             topSum = gridScript.GetMovementCost(pos[x, y + 1]);
