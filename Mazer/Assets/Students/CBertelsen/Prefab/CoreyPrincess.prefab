@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1255353829825290}
   m_IsPrefabParent: 1
+--- !u!1 &1112154887826260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4091358416448264}
+  m_Layer: 0
+  m_Name: CoreyHueristic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1255353829825290
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,8 +37,7 @@ GameObject:
   - component: {fileID: 212469236458908564}
   - component: {fileID: 120986064752213204}
   - component: {fileID: 114134451700769670}
-  - component: {fileID: 114400383871613110}
-  - component: {fileID: 114939564978163928}
+  - component: {fileID: 114597784386125086}
   m_Layer: 0
   m_Name: CoreyPrincess
   m_TagString: Untagged
@@ -63,6 +77,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4091358416448264
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112154887826260}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4537539216141222}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4537539216141222
 Transform:
   m_ObjectHideFlags: 1
@@ -73,6 +100,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4091358416448264}
   - {fileID: 4614898031968408}
   - {fileID: 4815945156921844}
   m_Father: {fileID: 0}
@@ -89,7 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4537539216141222}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4815945156921844
 Transform:
@@ -102,7 +130,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4537539216141222}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114134451700769670
 MonoBehaviour:
@@ -115,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842d5b1fe10374f06a734a6a8f1c5569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  astar: {fileID: 0}
+  astar: {fileID: 114597784386125086}
 --- !u!114 &114362019683296646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,29 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avoidDamage: 1
   shortestRoute: 1
---- !u!114 &114400383871613110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1255353829825290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5a013c12de241e69fdc04f848c2d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114784412144942270
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409204173304356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5a013c12de241e69fdc04f848c2d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114939564978163928
+--- !u!114 &114597784386125086
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -164,7 +170,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: 1
   gridScript: {fileID: 0}
-  hueristic: {fileID: 114400383871613110}
+  hueristic: {fileID: 114784412144942270}
+--- !u!114 &114784412144942270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409204173304356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5a013c12de241e69fdc04f848c2d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &120986064752213204
 LineRenderer:
   m_ObjectHideFlags: 1

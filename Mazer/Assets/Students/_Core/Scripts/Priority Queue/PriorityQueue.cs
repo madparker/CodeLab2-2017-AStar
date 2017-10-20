@@ -28,7 +28,7 @@ public class PriorityQueue<T>
 	public T Dequeue()
 	{
 		int bestIndex = 0;
-
+		//SMALLER IS HIGHER PRIORITY
 		for (int i = 0; i < elements.Count; i++) {
 			if (elements[i].Item2 < elements[bestIndex].Item2) {
 				bestIndex = i;
