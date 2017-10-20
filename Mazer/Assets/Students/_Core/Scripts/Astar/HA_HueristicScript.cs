@@ -14,6 +14,7 @@ public class HA_HueristicScript : MonoBehaviour {
 
 		heuristic += cross * 0.005f;
 
+		print (heuristic);
 
 		return heuristic;
 	}
