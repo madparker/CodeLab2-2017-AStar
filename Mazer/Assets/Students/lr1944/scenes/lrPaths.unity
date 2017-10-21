@@ -438,13 +438,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cb14fefbdbe73465583527aedc5221b5, type: 2}
   - {fileID: 2100000, guid: b708f94f738474079ba594699e5a8413, type: 2}
   costs:
-  - 0.05
+  - 0.1
+  - 0.15
   - 0.2
+  - 0.25
+  - 0.3
+  - 0.35
   - 0.4
-  - 0.8
-  - 1.6
-  - 3.2
-  - 6.4
   - 20
   start: {x: 1, y: 1, z: 0}
   goal: {x: 9, y: 9, z: 0}

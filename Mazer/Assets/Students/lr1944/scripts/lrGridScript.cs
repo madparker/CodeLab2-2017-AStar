@@ -27,7 +27,7 @@ public class lrGridScript : GridScript {
         float tilePerlin = Mathf.PerlinNoise((x + perlinOffsetX) * perlinFrequency, (y + perlinOffsetY) * perlinFrequency);
 
        // function to smooth bell curve of perlin values to get more even distribution
-        //float s = Mathf.Abs(tilePerlin - 0.5f) * 0.5f;
+        //float s = Mathf.Abs(tilePerlin - 0.5f);
         //if (x < 0.5f) {
         //    tilePerlin += s;
         //} else{
@@ -58,14 +58,18 @@ public class lrGridScript : GridScript {
         }
 
     public void SetTileToPath(int x, int y) {
-        gridArray[x, y].GetComponent<MeshRenderer>().sharedMaterial = mats[0];                                                    
+        gridArray[x] [y].GetComponent<MeshRenderer>().sharedMaterial = mats[0];                                                    
     }
 
-    public void SetTileToLowerCostMat(int x, int y, int currentCost) {
+    public void SetTileToLowerCostMat(int x, int y) {
+
+        Material currentMat = gridArray[x][y].GetComponent<MeshRenderer>().sharedMaterial;
+        int currentCost = System.Array.IndexOf(mats, currentMat);
+
         if (currentCost == 0f) {
             SetTileToPath(x,y);
         } else {
-            gridArray[x, y].GetComponent<MeshRenderer>().sharedMaterial = mats[currentCost-1];
+            gridArray[x][ y].GetComponent<MeshRenderer>().sharedMaterial = mats[currentCost-1];
         }
     }
 }

@@ -13,7 +13,7 @@ public class AStarScript : MonoBehaviour {
 	protected int gridWidth;
 	protected int gridHeight;
 
-	protected GameObject[,] pos;
+	protected GameObject[][] pos;
 
 	//A Star stuff
 	protected Vector3 start;
@@ -118,7 +118,7 @@ public class AStarScript : MonoBehaviour {
 		while(!current.Equals(start)){
 			//line.positionCount++;
 			
-			GameObject go = pos[(int)current.x, (int)current.y];
+			GameObject go = pos[(int)current.x] [(int)current.y];
 			path.Insert(0, go, new Vector3((int)current.x, (int)current.y));
 
 			current = cameFrom[current];
@@ -131,7 +131,7 @@ public class AStarScript : MonoBehaviour {
 			i++;
 		}
 
-		path.Insert(0, pos[(int)current.x, (int)current.y]);
+		path.Insert(0, pos[(int)current.x] [(int)current.y]);
 		path.nodeInspected = exploredNodes;
 		
 		//Debug.Log(path.pathName + " Terrian Score: " + score);
@@ -144,7 +144,7 @@ public class AStarScript : MonoBehaviour {
 		   y >=0 && y < gridHeight)
 		{
 			Vector3 next = new Vector3(x, y);
-			float new_cost = costSoFar[current] + gridScript.GetMovementCost(pos[x, y]);
+			float new_cost = costSoFar[current] + gridScript.GetMovementCost(pos[x] [y]);
 			if(!costSoFar.ContainsKey(next) || new_cost < costSoFar[next])
 			{
 				costSoFar[next] = new_cost;

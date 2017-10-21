@@ -75,8 +75,10 @@ public class lrAstarPathmaker : AStarScript {
         while (!current.Equals(start)) {
             //line.positionCount++;
 
-            GameObject go = pos[(int)current.x, (int)current.y];
+            GameObject go = pos[(int)current.x][ (int)current.y];
             path.Insert(0, go, new Vector3((int)current.x, (int)current.y));
+
+            // changes to generate path at the beginning
 
             lrGridS.SetTileToPath((int)current.x, (int)current.y);
 
@@ -90,7 +92,7 @@ public class lrAstarPathmaker : AStarScript {
             i++;
             }
 
-        path.Insert(0, pos[(int)current.x, (int)current.y]);
+        path.Insert(0, pos[(int)current.x][ (int)current.y]);
         lrGridS.SetTileToPath((int)current.x, (int)current.y);
         path.nodeInspected = exploredNodes;
 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4391575759690018}
   - component: {fileID: 114015107964656400}
   - component: {fileID: 114011109584964580}
-  - component: {fileID: 114591646515272588}
+  - component: {fileID: 114287106257641880}
   m_Layer: 0
   m_Name: person
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   check: 1
   gridScript: {fileID: 0}
   hueristic: {fileID: 114011109584964580}
---- !u!114 &114591646515272588
+--- !u!114 &114287106257641880
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

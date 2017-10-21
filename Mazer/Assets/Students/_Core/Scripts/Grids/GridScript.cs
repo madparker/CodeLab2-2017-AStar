@@ -13,7 +13,7 @@ public class GridScript : MonoBehaviour {
 	public Vector3 start = new Vector3(0,0);
 	public Vector3 goal = new Vector3(14,14);
 	
-	public GameObject[,] gridArray;
+	public GameObject[][] gridArray;
 	
 	public GameObject startSprite;
 	public GameObject goalSprite;
@@ -26,16 +26,17 @@ public class GridScript : MonoBehaviour {
 	void Update () {
 	}
 
-	public virtual GameObject[,] GetGrid(){
+	public virtual GameObject[][] GetGrid(){
 
 		if(gridArray == null){
 
-			gridArray = new GameObject[gridWidth, gridHeight];
+			gridArray = new GameObject[gridWidth] [];
 			
 			float offsetX = (gridWidth  * -spacing)/2f;
 			float offsetY = (gridHeight * spacing)/2f;
 
 			for(int x = 0; x < gridWidth; x++){
+                gridArray[x] = new GameObject[gridHeight];
 				for(int y = 0; y < gridHeight; y++){
 					GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);				//a quad is a primitive that we put our sprites on, this is creating it
 					quad.transform.localScale = new Vector3(spacing, spacing, spacing);				//scaling the position
@@ -44,7 +45,7 @@ public class GridScript : MonoBehaviour {
 
 					quad.transform.parent = transform;												//setting parent in heirarchy
 
-					gridArray[x, y] = quad;															//seperate array keeping track of what's in the grid
+					gridArray[x] [y] = quad;															//seperate array keeping track of what's in the grid
 					
 					quad.GetComponent<MeshRenderer>().sharedMaterial = GetMaterial(x, y);			//getting the MeshRenderer of current quad, setting its material using Matt's function "GetMaterial"
 
