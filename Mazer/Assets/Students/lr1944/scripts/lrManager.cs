@@ -7,14 +7,16 @@ public class lrManager : MonoBehaviour {
     [SerializeField] GameObject startGo;
     [SerializeField] GameObject personPrefab;
 
-    float rndSpawnTime;
+    float timer;
 
-    void Start(){
-        rndSpawnTime = Random.Range(0.05f, 0.11f);
-        InvokeRepeating("SpawnPerson",rndSpawnTime,rndSpawnTime);
-    }
 
 	void Update () {
+
+        timer -= Time.deltaTime;
+
+        if (timer<=0) {
+            SpawnPerson();
+        }
         if (Input.GetKeyDown(KeyCode.Space)) {
             Application.LoadLevel(Application.loadedLevel);
         }
@@ -22,7 +24,7 @@ public class lrManager : MonoBehaviour {
 
     void SpawnPerson() {
         Instantiate(personPrefab,startGo.transform.position,Quaternion.identity);
-        rndSpawnTime = Random.Range(0.05f, 0.1f);
+        timer = Random.Range(0.05f, 1f);
     }
 
 }
