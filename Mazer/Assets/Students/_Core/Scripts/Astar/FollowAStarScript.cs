@@ -26,9 +26,9 @@ public class FollowAStarScript : MonoBehaviour {
 
 		transform.position = startPos.gameObject.transform.position;
 
-//		Debug.Log(path.nodeInspected/100f);
+        //		Debug.Log(path.nodeInspected/100f);
 
-		Invoke("StartMove", path.nodeInspected/100f);
+        StartMove();
 
 		startTime = Time.realtimeSinceStartup;
 	}

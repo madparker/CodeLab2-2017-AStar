@@ -3,27 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class lrGridScript : GridScript {
-
-    float perlinNoiseSeed;
+    
     float perlinOffsetX;
     float perlinOffsetY;
     public float perlinFrequency;
 
     private void Awake(){
+        // random offset for changing maps
         perlinOffsetX = Random.Range(-1000f, 1000f);
         perlinOffsetY = Random.Range(-1000f, 1000f);
-        //perlinNoiseSeed = Random.Range(0.1f, 1f);
+        // random start and goal positions
+        start = new Vector3(Mathf.Floor(Random.Range(0, gridWidth)), Mathf.Floor(Random.Range(0, gridHeight)));
+        goal = new Vector3(Mathf.Floor(Random.Range(0, gridWidth)), Mathf.Floor(Random.Range(0, gridHeight)));
+        // reset goal if too close
+        while (Vector3.Distance(start, goal)<gridWidth/2){
+            goal = new Vector3(Mathf.Floor(Random.Range(0, gridWidth)), Mathf.Floor(Random.Range(0, gridHeight)));
+        }
     }
 
     protected override Material GetMaterial(int x, int y) {
-        //Debug.Log(x + " " + y + " "+ Mathf.PerlinNoise((x+offsetX)*scale, (y + offsetY)*scale));
 
+        // generate tile grid through perlin noise
         float tilePerlin = Mathf.PerlinNoise((x + perlinOffsetX) * perlinFrequency, (y + perlinOffsetY) * perlinFrequency);
 
-        float margin = 1f / 7f;
+       // function to smooth bell curve of perlin values to get more even distribution
+        //float s = Mathf.Abs(tilePerlin - 0.5f) * 0.5f;
+        //if (x < 0.5f) {
+        //    tilePerlin += s;
+        //} else{
+        //    tilePerlin -= s;
+        //}
+
+        float margin = 1f / (mats.Length-1);
         int matToGet;
-        Debug.Log(x + " " + y + " " + "tileperlin: " + tilePerlin);
-        Debug.Log(margin);
+        //Debug.Log(x + " " + y + " " + "tileperlin: " + tilePerlin);
 
         if (tilePerlin<margin){
             matToGet = 1;
@@ -41,7 +54,18 @@ public class lrGridScript : GridScript {
             matToGet = 7;
         }
 
-
         return mats[matToGet];
         }
+
+    public void SetTileToPath(int x, int y) {
+        gridArray[x, y].GetComponent<MeshRenderer>().sharedMaterial = mats[0];                                                    
+    }
+
+    public void SetTileToLowerCostMat(int x, int y, int currentCost) {
+        if (currentCost == 0f) {
+            SetTileToPath(x,y);
+        } else {
+            gridArray[x, y].GetComponent<MeshRenderer>().sharedMaterial = mats[currentCost-1];
+        }
+    }
 }

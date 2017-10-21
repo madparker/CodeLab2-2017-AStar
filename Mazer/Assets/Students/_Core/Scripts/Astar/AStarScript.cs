@@ -13,7 +13,7 @@ public class AStarScript : MonoBehaviour {
 	protected int gridWidth;
 	protected int gridHeight;
 
-	GameObject[,] pos;
+	protected GameObject[,] pos;
 
 	//A Star stuff
 	protected Vector3 start;
@@ -26,11 +26,11 @@ public class AStarScript : MonoBehaviour {
 	protected Dictionary<Vector3, float> costSoFar = new Dictionary<Vector3, float>();
 	protected Vector3 current;
 
-	List<Vector3> visited = new List<Vector3>();
+	protected List<Vector3> visited = new List<Vector3>();
 
 	// Use this for initialization
 
-	void Awake(){
+	public void Awake(){
 
 		gridScript = GameObject.Find("Grid").GetComponent<GridScript>();
 		hueristic = GetComponentInChildren<HueristicScript>();
@@ -71,7 +71,7 @@ public class AStarScript : MonoBehaviour {
             {
                 if (current.Equals(goal))
                 {
-                    Debug.Log("GOOOAL!");
+                    //Debug.Log("GOOOAL!");
                     break;
                 }
                 visited.Add(current);
@@ -105,18 +105,18 @@ public class AStarScript : MonoBehaviour {
                     AddNodesToFrontier((int)current.x, (int)current.y + y);
                 }
             }
-            else Debug.Log("Tried to add the same node twice");
+            //else Debug.Log("Tried to add the same node twice");
         }
 
 		current = goal;
 
-		LineRenderer line = GetComponent<LineRenderer>();
+		//LineRenderer line = GetComponent<LineRenderer>();
 
 		int i = 0;
 		float score = 0;
 
 		while(!current.Equals(start)){
-			line.positionCount++;
+			//line.positionCount++;
 			
 			GameObject go = pos[(int)current.x, (int)current.y];
 			path.Insert(0, go, new Vector3((int)current.x, (int)current.y));
@@ -126,7 +126,7 @@ public class AStarScript : MonoBehaviour {
 			Vector3 vec = Util.clone(go.transform.position);
 			vec.z = -1;
 
-			line.SetPosition(i, vec);
+			//line.SetPosition(i, vec);
 			score += gridScript.GetMovementCost(go);
 			i++;
 		}
@@ -134,12 +134,12 @@ public class AStarScript : MonoBehaviour {
 		path.Insert(0, pos[(int)current.x, (int)current.y]);
 		path.nodeInspected = exploredNodes;
 		
-		Debug.Log(path.pathName + " Terrian Score: " + score);
-		Debug.Log(path.pathName + " Nodes Checked: " + exploredNodes);
-		Debug.Log(path.pathName + " Total Score: " + (score + exploredNodes));
+		//Debug.Log(path.pathName + " Terrian Score: " + score);
+		//Debug.Log(path.pathName + " Nodes Checked: " + exploredNodes);
+		//Debug.Log(path.pathName + " Total Score: " + (score + exploredNodes));
 	}
 
-	void AddNodesToFrontier(int x, int y){
+	protected void AddNodesToFrontier(int x, int y){
 		if(x >=0 && x < gridWidth && 
 		   y >=0 && y < gridHeight)
 		{

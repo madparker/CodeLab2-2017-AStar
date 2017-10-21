@@ -13,7 +13,7 @@ public class GridScript : MonoBehaviour {
 	public Vector3 start = new Vector3(0,0);
 	public Vector3 goal = new Vector3(14,14);
 	
-	GameObject[,] gridArray;
+	public GameObject[,] gridArray;
 	
 	public GameObject startSprite;
 	public GameObject goalSprite;
