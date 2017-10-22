@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1398270959269182}
+  m_IsPrefabParent: 1
+--- !u!1 &1398270959269182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4547719486186716}
+  - component: {fileID: 114363673217493744}
+  m_Layer: 0
+  m_Name: HR_Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4547719486186716
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398270959269182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114363673217493744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398270959269182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5154d727bfe9b4e3ebfa4bc70cda07b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myGridWidth: 16
+  myGridHeight: 9
+  mySpacing: 1
+  myBlockPrefab: {fileID: 1536797758553416, guid: 86b969b94d2c147d4a84f15a67f345e2,
+    type: 2}
+  myBlockSetArray:
+  - myBlockType: 0
+    mySprite: {fileID: 0}
+    mySpeed: 1
+    myCost: 1
+  - myBlockType: 1
+    mySprite: {fileID: 21300000, guid: b1efc7f15869b4f5fa3b4969a1d05db7, type: 3}
+    mySpeed: 2
+    myCost: 1000
+  - myBlockType: 2
+    mySprite: {fileID: 21300000, guid: 4f94ef162d5964aff8e742566b8b62ce, type: 3}
+    mySpeed: 5
+    myCost: 5
+  - myBlockType: 3
+    mySprite: {fileID: 21300000, guid: 929aac5cf93374f9ab82f45b8de96485, type: 3}
+    mySpeed: 1
+    myCost: 1
+  - myBlockType: 4
+    mySprite: {fileID: 21300000, guid: 4e30b61928e3a4f669803bb7b66b1fe5, type: 3}
+    mySpeed: 1
+    myCost: 1
+  myCurrentPos: {x: 0, y: 0, z: 0}
+  myTargetPos: {x: 0, y: 0, z: 0}
