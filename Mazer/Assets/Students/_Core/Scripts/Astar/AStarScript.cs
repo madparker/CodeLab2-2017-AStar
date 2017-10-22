@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class AStarScript : MonoBehaviour {
 
 	public bool check = true;
+    float timer = 1f;
 
 	public GridScript gridScript;
 	public HueristicScript hueristic;
@@ -26,7 +27,7 @@ public class AStarScript : MonoBehaviour {
 	protected Dictionary<Vector3, float> costSoFar = new Dictionary<Vector3, float>();
 	protected Vector3 current;
 
-	protected List<Vector3> visited = new List<Vector3>();
+	public List<Vector3> visited = new List<Vector3>();
 
 	// Use this for initialization
 
@@ -39,10 +40,11 @@ public class AStarScript : MonoBehaviour {
 	protected virtual void Start () {
 
 		InitAstar();
+
 	}
 
 	protected virtual void InitAstar(){
-		InitAstar(new Path(hueristic.gameObject.name, gridScript));
+        InitAstar(new Path(hueristic.gameObject.name, gridScript));
 	}
 
 	protected virtual void InitAstar(Path path){
@@ -157,6 +159,11 @@ public class AStarScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //timer -= Time.deltaTime;
+        //if (timer<=0){
+        //    InitAstar(path);
+            
+        //}
 	
 	}
 }
