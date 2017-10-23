@@ -7,25 +7,28 @@ public class AStarScript : MonoBehaviour {
 	public bool check = true;
 
 	public GridScript gridScript;
-	public HA_HueristicScript hueristic;
+	public HueristicScript hueristic;
 
 	protected int gridWidth;
 	protected int gridHeight;
 
 	GameObject[,] pos;
 
+	protected Transform[,] arrayPos;
+
 	//A Star stuff
 	protected Vector3 start;
 	protected Vector3 goal;
 
-	public Path path;
+	public PathScript path;
+	Path pathPath;
 
 	protected PriorityQueue<Vector3> frontier;
 	protected Dictionary<Vector3, Vector3> cameFrom = new Dictionary<Vector3, Vector3>();
 	protected Dictionary<Vector3, float> costSoFar = new Dictionary<Vector3, float>();
 	protected Vector3 current;
 
-	List<Vector3> visited = new List<Vector3>();
+	protected List<Vector3> visited = new List<Vector3>();
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -33,10 +36,11 @@ public class AStarScript : MonoBehaviour {
 	}
 
 	protected virtual void InitAstar(){
-		InitAstar(new Path(hueristic.gameObject.name, gridScript));
+//		InitAstar(new PathScript(hueristic.gameObject.name, gridScript));
 	}
 
-	protected virtual void InitAstar(Path path){
+
+	protected virtual void InitAstar(PathScript path){
 		this.path = path;
 
 		start = gridScript.start;
@@ -100,7 +104,7 @@ public class AStarScript : MonoBehaviour {
 			i++;
 		}
 
-		path.Insert(0, pos[(int)current.x, (int)current.y]);
+		path.Insert(0, pos[(int)current.x, (int)current.y].gameObject);
 		path.nodeInspected = exploredNodes;
 		
 		Debug.Log(path.pathName + " Terrian Score: " + score);
@@ -108,7 +112,7 @@ public class AStarScript : MonoBehaviour {
 		Debug.Log(path.pathName + " Total Score: " + (score + exploredNodes));
 	}
 
-	void AddNodesToFrontier(int x, int y){
+	protected virtual void AddNodesToFrontier(int x, int y){
 		if(x >=0 && x < gridWidth && 
 		   y >=0 && y < gridHeight)
 		{
@@ -125,8 +129,5 @@ public class AStarScript : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

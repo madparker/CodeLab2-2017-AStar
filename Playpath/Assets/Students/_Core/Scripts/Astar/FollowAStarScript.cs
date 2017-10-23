@@ -6,7 +6,7 @@ public class FollowAStarScript : MonoBehaviour {
 
 	protected bool move = false;
 
-	protected Path path;
+	protected PathScript path;
 	public AStarScript astar;
 	public Step startPos;
 	public Step destPos;
@@ -28,7 +28,7 @@ public class FollowAStarScript : MonoBehaviour {
 
 //		Debug.Log(path.nodeInspected/100f);
 
-		Invoke("StartMove", path.nodeInspected/100f);
+		Invoke("StartMove", 0.5f);
 
 		startTime = Time.realtimeSinceStartup;
 	}

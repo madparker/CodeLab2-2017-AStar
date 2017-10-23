@@ -6,6 +6,7 @@ public class GridScript : MonoBehaviour {
 	public int gridWidth;
 	public int gridHeight;
 	public float spacing;
+
 	
 	public Material[] mats;
 	public float[]   costs;

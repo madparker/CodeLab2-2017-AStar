@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
 
 
 
-
 	void Awake () {
 		grid = new GameObject ("Grid");
 		gridArray = new Transform[rowLength, columnLength];
@@ -59,4 +58,27 @@ public class GameManager : MonoBehaviour {
 
 	
 	}
+
+	public float GetMovementCost(GameObject go){
+//		Material mat = go.GetComponent<MeshRenderer>().sharedMaterial;
+//		int i;
+
+//		for(i = 0; i < mats.Length; i++){
+//			if(mat.name.StartsWith(mats[i].name)){
+//				break;
+//			}
+//		}
+
+		return 0;
+	}
+
+	public Vector2 Pos2d(MainPlayer target){
+
+		return new Vector2 (GridPosition(target).x, GridPosition(target).y);
+	}
+
+	public IntVector2 GridPosition(MainPlayer target){
+		return new IntVector2 (target.X, target.Z);
+	}
+
 }

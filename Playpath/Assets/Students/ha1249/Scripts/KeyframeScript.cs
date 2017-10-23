@@ -64,7 +64,7 @@ public class KeyframeScript : MonoBehaviour {
 
 	public void AreaNodeAssignment(Vector3 pos){
 //		
-		keyFrames.Add (GridPosition());
+		keyFrames.Add (gameManager.GridPosition(player));
 
 		if (!areaNodes.Contains(pos)) {
 			Vector3 areaPos = new Vector3 (pos.x, pos.y + yOffset, pos.z);
@@ -78,9 +78,9 @@ public class KeyframeScript : MonoBehaviour {
 	}
 
 	public void KeyFrameAssignment(){
-		if (!keyFrames.Contains (GridPosition())) {
+		if (!keyFrames.Contains (gameManager.GridPosition(player))) {
 	
-			keyFrames.Add (GridPosition());
+			keyFrames.Add (gameManager.GridPosition(player));
 		}
 		
 	}
@@ -236,9 +236,6 @@ public class KeyframeScript : MonoBehaviour {
 //	}
 		
 
-	public IntVector2 GridPosition(){
-		return new IntVector2 (player.X, player.Z);
-	}
 
 
 	public void StorePerimeterPoints(Vector3 pos){

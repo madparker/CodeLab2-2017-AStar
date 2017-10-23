@@ -126,8 +126,8 @@ public class Recording : MonoBehaviour {
 		Segments = maxSegments;
 
 
-		lastPositionX = key.GridPosition().x;
-		lastPositionY = key.GridPosition().y;
+		lastPositionX = gameManager.GridPosition(player).x;
+		lastPositionY = gameManager.GridPosition(player).y;
 
 //		print (gameObject.name + " : " + lastPositionX + " " + lastPositionY); 
 //
@@ -269,10 +269,10 @@ public class Recording : MonoBehaviour {
 		//Debug.Log(key
 		//Debug.Log(gameObject.name +" " + key.GridPosition().x +", "+lastPositionX);
 		//Debug.Log(gameObject.name +" " + key.GridPosition().x +", "+lastPositionX);
-		if (Mathf.Abs (key.GridPosition ().x - lastPositionX) == 1 && key.GridPosition ().y - lastPositionY == 0 ) {
+		if (Mathf.Abs (gameManager.GridPosition(player).x - lastPositionX) == 1 && gameManager.GridPosition(player).y - lastPositionY == 0 ) {
 
 
-			if (key.GridPosition ().x - lastPositionX > 0) {
+			if (gameManager.GridPosition(player).x - lastPositionX > 0) {
 				//Debug.Log (gameObject.name+"Moved Right");
 				dir = 1;
 				TrackMoves (dir);
@@ -284,12 +284,12 @@ public class Recording : MonoBehaviour {
 				TrackMoves (dir);
 				MoveCount++;
 			}
-			lastPositionX = key.GridPosition ().x;
+			lastPositionX = gameManager.GridPosition(player).x;
 		}
 
-		if (Mathf.Abs (key.GridPosition ().y - lastPositionY) == 1 && key.GridPosition ().x - lastPositionX == 0) {
+		if (Mathf.Abs (gameManager.GridPosition(player).y - lastPositionY) == 1 && gameManager.GridPosition(player).x - lastPositionX == 0) {
 
-			if (key.GridPosition ().y - lastPositionY > 0) {
+			if (gameManager.GridPosition(player).y - lastPositionY > 0) {
 				//Debug.Log (gameObject.name+"Moved Up");
 				dir = 2 ;
 				TrackMoves (dir);
@@ -301,24 +301,24 @@ public class Recording : MonoBehaviour {
 				TrackMoves (dir);
 				MoveCount++;
 			}
-			lastPositionY = key.GridPosition ().y;
+			lastPositionY = gameManager.GridPosition(player).y;
 		}
 
-		if (Mathf.Abs (key.GridPosition ().y - lastPositionY) == 1 &&  Mathf.Abs(key.GridPosition ().x - lastPositionX) == 1) {
+		if (Mathf.Abs (gameManager.GridPosition(player).y - lastPositionY) == 1 &&  Mathf.Abs(gameManager.GridPosition(player).x - lastPositionX) == 1) {
 
-			if (key.GridPosition ().y - lastPositionY > 0 && key.GridPosition ().x - lastPositionX > 0) {
+			if (gameManager.GridPosition(player).y - lastPositionY > 0 && gameManager.GridPosition(player).x - lastPositionX > 0) {
 //				Debug.Log ("Moved UpRight");
 				dir = 3;
 				TrackMoves (dir);
 				MoveCount++;
 
-			} else if (key.GridPosition ().y - lastPositionY > 0 && key.GridPosition ().x - lastPositionX < 0) {
+			} else if (gameManager.GridPosition(player).y - lastPositionY > 0 && gameManager.GridPosition(player).x - lastPositionX < 0) {
 //				Debug.Log ("Moved UpLeft");
 				dir = 3 ;
 				TrackMoves (dir);
 				MoveCount++;
 
-			} else if (key.GridPosition ().y - lastPositionY < 0 && key.GridPosition ().x - lastPositionX > 0) {
+			} else if (gameManager.GridPosition(player).y - lastPositionY < 0 && gameManager.GridPosition(player).x - lastPositionX > 0) {
 //				Debug.Log ("Moved DownRight");
 				dir = -3;
 				TrackMoves (dir);
@@ -329,8 +329,8 @@ public class Recording : MonoBehaviour {
 				TrackMoves (dir);
 				MoveCount++;
 			}
-			lastPositionY = key.GridPosition ().y;
-			lastPositionX = key.GridPosition ().x;
+			lastPositionY = gameManager.GridPosition(player).y;
+			lastPositionX = gameManager.GridPosition(player).x;
 		}
 
 
