@@ -31,8 +31,7 @@ public class AStarScript : MonoBehaviour {
 	// Use this for initialization
 	protected virtual void Start () {
 		InitAstar();
-	}
-
+    }
 	protected virtual void InitAstar(){
 		InitAstar(new Path(hueristic.gameObject.name, gridScript));
 	}
@@ -109,7 +108,7 @@ public class AStarScript : MonoBehaviour {
 
 		while(!current.Equals(start)){
 			line.positionCount++;
-			
+
 			GameObject go = pos[(int)current.x, (int)current.y];
 			path.Insert(0, go, new Vector3((int)current.x, (int)current.y));
 
@@ -149,6 +148,30 @@ public class AStarScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            FollowAStarScript follow = GetComponent<FollowAStarScript>();
+            pos = null;
+            path.path.Clear();
+            path.steps = 0;
+            visited.Clear();
+            frontier = new PriorityQueue<Vector3>();
+            cameFrom = new Dictionary<Vector3, Vector3>();
+            costSoFar = new Dictionary<Vector3, float>();
+            //gridScript.start = transform.position;
+            InitAstar();
+            follow.StartMove();
+            StartCoroutine(StopEnemyMovement(3));
+
+        }
+
+    }
+
+    IEnumerator StopEnemyMovement(float time)
+    {
+        yield return new WaitForSeconds(time);
+        FollowAStarScript follow = GetComponent<FollowAStarScript>();
+        follow.StopMove();
+    }
 }

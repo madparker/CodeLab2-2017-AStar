@@ -20,23 +20,25 @@ public class FollowAStarScript : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		path = astar.path;
-		startPos = path.Get(0);
-		destPos  = path.Get(currentStep);
+        path = astar.path;
+        startPos = path.Get(0);
+        destPos = path.Get(currentStep);
 
-		transform.position = startPos.gameObject.transform.position;
+        transform.position = startPos.gameObject.transform.position;
 
 //		Debug.Log(path.nodeInspected/100f);
 
-		Invoke("StartMove", path.nodeInspected/100f);
+		//Invoke("StartMove", 0);
 
 		startTime = Time.realtimeSinceStartup;
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
+        path = astar.path;
+        destPos = path.Get(currentStep);
 
-		if(move){
+        if (move){
 			lerpPer += Time.deltaTime/destPos.moveCost;
 
 			transform.position = Vector3.Lerp(startPos.gameObject.transform.position, 
@@ -61,9 +63,14 @@ public class FollowAStarScript : MonoBehaviour {
 		}
 	}
 
-	protected virtual void StartMove(){
+    public virtual void StartMove(){
 		move = true;
 		travelStartTime = Time.realtimeSinceStartup;
 	}
+
+    public virtual void StopMove()
+    {
+        move = false;
+    }
 }
 

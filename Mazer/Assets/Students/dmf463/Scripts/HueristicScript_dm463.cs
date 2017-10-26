@@ -55,7 +55,7 @@ public class HueristicScript_dm463 : HueristicScript {
         float otherSum = (topSum + bottomSum + leftSum + rightSum) / (nodesCheck * 5);
         priority += (otherSum + gridScript.GetMovementCost(pos[x, y]));
         //Debug.Log("priority = " + priority);
-        
+
         return priority;
     }
 
