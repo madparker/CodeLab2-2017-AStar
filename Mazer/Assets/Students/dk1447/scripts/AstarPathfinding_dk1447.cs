@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class AstarPathfinding_dk1447 : MonoBehaviour {
 
@@ -18,26 +19,32 @@ public class AstarPathfinding_dk1447 : MonoBehaviour {
 
 
 	void FindPath (Vector3 startPos, Vector3 targetPos){ //takes vector 3 coords of our start and target positions
+
+		Stopwatch sw = new Stopwatch();
+		sw.Start();
+
 		Node_dk1447 startNode = grid.NodeFromWorldPoint(startPos); //gets the correct nodes for these world points
 		Node_dk1447 targetNode = grid.NodeFromWorldPoint(targetPos);
 
-		List<Node_dk1447> openNodeSet = new List<Node_dk1447>(); //creates a list of nodes that have not been checked yet
+		Heap_dk1447<Node_dk1447> openNodeSet = new Heap_dk1447<Node_dk1447>(grid.MaxSize); //creates a list of nodes that have not been checked yet
 		HashSet<Node_dk1447> closedNodeSet = new HashSet<Node_dk1447>(); //set of nodes that have been checked
 
 		openNodeSet.Add(startNode);//adds starting node to open set
 
 		while(openNodeSet.Count > 0){ //while there are nodes in our open set
-			Node_dk1447 currentNode = openNodeSet[0]; //set current node as the first in the list
-			for (int i = 1; i < openNodeSet.Count; i++) { //cycle through nodes in open set
-				if(openNodeSet[i].fCost < currentNode.fCost || openNodeSet[i].fCost == currentNode.fCost && openNodeSet[i].hCost < currentNode.hCost){ //if the node's fcost is less than the current node's fcost
-					currentNode = openNodeSet[i]; //reassign the new node as the current node
-				}
-			}
+			Node_dk1447 currentNode = openNodeSet.RemoveFirst(); //set current node as the first in the list
+								/*for (int i = 1; i < openNodeSet.Count; i++) { //cycle through nodes in open set
+									if(openNodeSet[i].fCost < currentNode.fCost || openNodeSet[i].fCost == currentNode.fCost && openNodeSet[i].hCost < currentNode.hCost){ //if the node's fcost is less than the current node's fcost
+										currentNode = openNodeSet[i]; //reassign the new node as the current node
+									}
+								}
 
-			openNodeSet.Remove(currentNode); //removes the current node from the open set
+								openNodeSet.Remove(currentNode); //removes the current node from the open set*/
 			closedNodeSet.Add(currentNode); //and adds it to the closed set
 
 			if (currentNode == targetNode){ //if the current node is the target node
+				sw.Stop();
+				print ("Path found: " + sw.ElapsedMilliseconds + " ms");
 				RetracePath(startNode, targetNode); //retrace our path back to start
 				return;
 			}
@@ -56,6 +63,8 @@ public class AstarPathfinding_dk1447 : MonoBehaviour {
 
 					if (!openNodeSet.Contains(neighbor)){ //if the neighbor is not in the open set
 						openNodeSet.Add(neighbor); //add it
+					} else{
+						openNodeSet.UpdateItem(neighbor);
 					}
 				}
 			}

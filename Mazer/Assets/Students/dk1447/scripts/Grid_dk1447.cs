@@ -23,6 +23,11 @@ public class Grid_dk1447 : MonoBehaviour {
 		CreateGrid(); //calls method to create grid
 	}
 
+	public int MaxSize{
+		get{
+			return gridSizeX * gridSizeY;
+		}
+	}
 
 	void CreateGrid(){
 		grid = new Node_dk1447[gridSizeX,gridSizeY]; //creates a new 2D grid array
