@@ -15,7 +15,7 @@ public class GridScript : MonoBehaviour {
     public GameObject playerCharacter;
     public GameObject enemeyCharacter;
 	
-	GameObject[,] gridArray;
+	protected GameObject[,] gridArray;
 	
 	public GameObject startSprite;
 	//public GameObject goalSprite;

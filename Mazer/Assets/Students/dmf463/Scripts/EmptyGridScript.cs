@@ -28,7 +28,8 @@ public class EmptyGridScript : GridScript
     {
         gridWidth = gridString[0].Length;
         gridHeight = gridString.Length;
-        playerCharacter.transform.position = new Vector3(10, 10);
+        GameObject[,] pos = GetGrid();
+        playerCharacter.transform.position = pos[0, 0].transform.position;
         goal = playerCharacter.transform.position;
         gridWidth = gridString[0].Length;
         gridHeight = gridString.Length;
@@ -41,15 +42,15 @@ public class EmptyGridScript : GridScript
         {
             //playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x + spacing, playerCharacter.transform.position.y);
             GameObject[,] pos = GetGrid();
-            playerCharacter = pos[(int)playerCharacter.transform.position.x + (int)spacing, (int)playerCharacter.transform.position.y];
+            playerCharacter.transform.position = pos[(int)playerCharacter.transform.position.x + 1, (int)playerCharacter.transform.position.y].transform.position;
+            goal = playerCharacter.transform.position;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             //playerCharacter.transform.position = new Vector3(playerCharacter.transform.position.x - spacing, playerCharacter.transform.position.y);
-            GameObject[,] pos = GetGrid();
-            playerCharacter = pos[(int)playerCharacter.transform.position.x - (int)spacing, (int)playerCharacter.transform.position.y];
+            //GameObject[,] pos = GetGrid();
+            //playerCharacter = pos[(int)playerCharacter.transform.position.x - (int)spacing, (int)playerCharacter.transform.position.y];
         }
-        goal = playerCharacter.transform.position;
     }
 
     public override float GetMovementCost(GameObject go)
