@@ -20,9 +20,6 @@ public class AstarPathfinding_dk1447 : MonoBehaviour {
 
 	void FindPath (Vector3 startPos, Vector3 targetPos){ //takes vector 3 coords of our start and target positions
 
-		Stopwatch sw = new Stopwatch();
-		sw.Start();
-
 		Node_dk1447 startNode = grid.NodeFromWorldPoint(startPos); //gets the correct nodes for these world points
 		Node_dk1447 targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -33,18 +30,10 @@ public class AstarPathfinding_dk1447 : MonoBehaviour {
 
 		while(openNodeSet.Count > 0){ //while there are nodes in our open set
 			Node_dk1447 currentNode = openNodeSet.RemoveFirst(); //set current node as the first in the list
-								/*for (int i = 1; i < openNodeSet.Count; i++) { //cycle through nodes in open set
-									if(openNodeSet[i].fCost < currentNode.fCost || openNodeSet[i].fCost == currentNode.fCost && openNodeSet[i].hCost < currentNode.hCost){ //if the node's fcost is less than the current node's fcost
-										currentNode = openNodeSet[i]; //reassign the new node as the current node
-									}
-								}
-
-								openNodeSet.Remove(currentNode); //removes the current node from the open set*/
+							
 			closedNodeSet.Add(currentNode); //and adds it to the closed set
 
 			if (currentNode == targetNode){ //if the current node is the target node
-				sw.Stop();
-				print ("Path found: " + sw.ElapsedMilliseconds + " ms");
 				RetracePath(startNode, targetNode); //retrace our path back to start
 				return;
 			}
