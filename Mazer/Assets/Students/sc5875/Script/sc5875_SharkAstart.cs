@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sc5875_Astart : AStarScript {
+public class sc5875_SharkAstart : AStarScript {
 	protected GameObject[,] m_pos;
 	protected List<Vector3> m_visited = new List<Vector3>();
+	protected Vector3 m_goal;
 	[SerializeField] protected Vector3 startPoint;
-	[SerializeField] protected Vector3 goalPoint;
+	protected float timer;
+	protected override void Start () {
+		m_goal = gridScript.goal;
+		InitAstar();
+	}
+	protected void Update(){
+		timer += Time.deltaTime;
+		if(timer > 12.0){
+			timer = 0.0f;
+			
+			InitAstar();
+		}
+	}
 	protected override void InitAstar(Path path){
 		this.path = path;
 
 		start = startPoint;
-		goal = goalPoint;
+		goal = m_goal;
 		
 		gridWidth = gridScript.gridWidth;
 		gridHeight = gridScript.gridHeight;
