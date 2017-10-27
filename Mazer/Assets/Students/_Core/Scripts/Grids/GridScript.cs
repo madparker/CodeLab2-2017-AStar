@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GridScript : MonoBehaviour {
 
@@ -10,16 +11,19 @@ public class GridScript : MonoBehaviour {
 	public Material[] mats;
 	public float[]   costs;
 
-	public Vector3 start = new Vector3(0,0);
-	public Vector3 goal = new Vector3(14,14);
+	public List<Vector3> start;
+    public Vector3 goal;
+    //public List<Vector3> goal;
 	
 	GameObject[,] gridArray;
 	
 	public GameObject startSprite;
 	public GameObject goalSprite;
+    public Transform startPrefab;
 
 	// Use this for initialization
 	void Start () {
+
 	}
 	
 	// Update is called once per frame
@@ -48,12 +52,21 @@ public class GridScript : MonoBehaviour {
 					
 					quad.GetComponent<MeshRenderer>().sharedMaterial = GetMaterial(x, y);
 
-					if(goal.x == x && goal.y == y){
-						goalSprite.transform.position = quad.transform.position;
-					}
-					if(start.x == x && start.y == y){
-						startSprite.transform.position = quad.transform.position;
-					}
+                    //foreach (Vector3 goalPos in goal)
+                    //{
+                        if (goal.x == x && goal.y == y)
+                        {
+                            goalSprite.transform.position = quad.transform.position;
+                        }
+                    //}
+                    foreach (Vector3 startPos in start)
+                    {
+                        if (startPos.x == x && startPos.y == y)
+                        {
+                            Instantiate(startPrefab, quad.transform.position, Quaternion.identity);
+                            //startSprite.transform.position = quad.transform.position;
+                        }
+                    }
 				}
 			}
 		}
