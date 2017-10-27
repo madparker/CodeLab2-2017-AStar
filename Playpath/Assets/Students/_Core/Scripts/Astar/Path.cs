@@ -7,14 +7,14 @@ public class Path {
 	public string pathName;
 	public int nodeInspected;
 
-	public GridScript gridScipt;
+	public GameManager gameManager;
 	public List<Step> path = new List<Step>();
 
 	public float score;
 	public int steps;
 
-	public Path(string name, GridScript gridScipt){
-		this.gridScipt = gridScipt;
+	public Path(string name, GameManager gameManager){
+		this.gameManager = gameManager;
 		pathName = name;
 	}
 
@@ -23,7 +23,7 @@ public class Path {
 	}
 	
 	public virtual void Insert(int index, GameObject go){
-		float stepCost = gridScipt.GetMovementCost(go);
+		float stepCost = gameManager.GetMovementCost(go);
 		score += stepCost;
 		
 		path.Insert(index, new Step(go, stepCost));
@@ -32,7 +32,7 @@ public class Path {
 	}
 
 	public virtual void Insert(int index, GameObject go, Vector3 gridPos){
-		float stepCost = gridScipt.GetMovementCost(go);
+		float stepCost = gameManager.GetMovementCost(go);
 		score += stepCost;
 		
 		path.Insert(index, new Step(go, stepCost, gridPos));

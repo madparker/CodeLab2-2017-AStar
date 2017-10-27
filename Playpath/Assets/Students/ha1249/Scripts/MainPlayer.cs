@@ -176,7 +176,7 @@ public class MainPlayer : MonoBehaviour {
 
 				//Sets 'single-use' button bool checks to false for later use
 				isPressed = false;
-				record.isPressed = false;
+//				record.isPressed = false;
 				hasFired = false;
 				frameAdded = false;
 

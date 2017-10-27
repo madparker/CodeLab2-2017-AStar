@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject player1;
 	public GameObject player2;
 
+
 	public Transform [,] gridArray;
-	GameObject grid;
+	public GameObject grid;
 	public int rowLength;
 	public int columnLength;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Awake () {
+		
 		grid = new GameObject ("Grid");
 		gridArray = new Transform[rowLength, columnLength];
 
@@ -29,16 +31,17 @@ public class GameManager : MonoBehaviour {
 			for (int r = 0; r < rowLength; r++) {
 				Vector3 pos = new Vector3 (r * gridSize + xOffset,-1f,c * gridSize + zOffset);
 				gridArray[r,c] = Instantiate (dotPrefab, pos, Quaternion.identity, grid.transform) as Transform;
-//				print (gridArray [r, c]);
 
+				gridArray[r,c].transform.localEulerAngles = new Vector3 (90f, 0f, 0f);
+				gridArray[r,c].transform.localScale = new Vector3 (3.4f, 3.4f, 3.4f);
+//				print (gridArray [r, c]);
 			}
 		}
 
+
 	}
 
-	void Start(){
-		AssignDefaultKeyframes ();
-	}
+
 		
 	public Vector3 GetWorldPosition(int x, int z){
 		return gridArray[x,z].position;
@@ -46,38 +49,50 @@ public class GameManager : MonoBehaviour {
 
 
 
-	void AssignDefaultKeyframes(){
-		for (int i = 0; i < columnLength; i++) {
-			player1.GetComponent<KeyframeScript> ().AreaNodeAssignment (gridArray[0,i].position);
-			player1.GetComponent<KeyframeScript> ().keyFrames.Clear ();
+//	void AssignDefaultKeyframes(){
+//		for (int i = 0; i < columnLength; i++) {
+//			player1.GetComponent<KeyframeScript> ().AreaNodeAssignment (gridArray[0,i].position);
+//			player1.GetComponent<KeyframeScript> ().keyFrames.Clear ();
+//
+//			player2.GetComponent<KeyframeScript> ().AreaNodeAssignment (gridArray[rowLength-1,i].position);
+//			player2.GetComponent<KeyframeScript> ().keyFrames.Clear ();
+//
+//		}
+//
+//	
+//	}
 
-			player2.GetComponent<KeyframeScript> ().AreaNodeAssignment (gridArray[rowLength-1,i].position);
-			player2.GetComponent<KeyframeScript> ().keyFrames.Clear ();
 
-		}
 
-	
-	}
 
 	public float GetMovementCost(GameObject go){
-//		Material mat = go.GetComponent<MeshRenderer>().sharedMaterial;
-//		int i;
 
-//		for(i = 0; i < mats.Length; i++){
-//			if(mat.name.StartsWith(mats[i].name)){
-//				break;
-//			}
-//		}
+		float cost = 0.25f;
 
-		return 0;
+		print (go.name);
+	
+		//		Material mat = go.GetComponent<MeshRenderer>().sharedMaterial;
+		//		int i;
+
+		//		for(i = 0; i < mats.Length; i++){
+		//			if(mat.name.StartsWith(mats[i].name)){
+		//				break;
+		//			}
+		//		}
+
+		return cost;
 	}
 
-	public Vector2 Pos2d(MainPlayer target){
 
+
+
+	public Vector2 Pos2d(PlayerScript target){
+		
 		return new Vector2 (GridPosition(target).x, GridPosition(target).y);
 	}
 
-	public IntVector2 GridPosition(MainPlayer target){
+	public IntVector2 GridPosition(PlayerScript target){
+		
 		return new IntVector2 (target.X, target.Z);
 	}
 

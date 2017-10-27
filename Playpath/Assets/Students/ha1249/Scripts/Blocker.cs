@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Blocker : MonoBehaviour {
 
+	public KeyframeScript keyAttached;
+
 	public float recTimRegain = 0.2f;
 
 	public float health;
@@ -14,6 +16,9 @@ public class Blocker : MonoBehaviour {
 			PlayerStats stats = col.gameObject.GetComponent<ProjectileScript> ().player.gameObject.GetComponent<PlayerStats> ();
 			stats.maxRecTime += recTimRegain;
 			col.gameObject.GetComponent<ProjectileScript> ().DestroyBullet (col.gameObject);
+
+			keyAttached.activeBlocks.Remove (this.gameObject);
+			keyAttached.blockPoints.Remove (transform.position);
 
 			Destroy (gameObject);
 		}

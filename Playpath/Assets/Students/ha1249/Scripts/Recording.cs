@@ -45,7 +45,8 @@ public class Recording : MonoBehaviour {
 	float playButtonEnd = 0f;
 
 	GameManager gameManager;
-	MainPlayer player;
+//	MainPlayer player;
+	PlayerScript player;
 	TeamAssignment input;
 	PlayerStats stats;
 	KeyframeScript key;
@@ -93,7 +94,7 @@ public class Recording : MonoBehaviour {
 
 	void Awake(){
 		
-		player = GetComponent<MainPlayer> ();
+		player = GetComponent<PlayerScript> ();
 		input = GetComponent<TeamAssignment> ();
 		key = GetComponent<KeyframeScript> ();
 		stats = GetComponent<PlayerStats> ();

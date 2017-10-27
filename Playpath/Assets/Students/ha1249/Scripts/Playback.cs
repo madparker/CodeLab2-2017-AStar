@@ -28,10 +28,6 @@ public class Playback : MonoBehaviour {
 
 	}
 
-
-
-
-
 	public void Play(){
 
 		float playAmount = record.recTime - record.playTime;

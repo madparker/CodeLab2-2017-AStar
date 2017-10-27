@@ -8,6 +8,7 @@ public class AStarScript : MonoBehaviour {
 
 	public GridScript gridScript;
 	public HueristicScript hueristic;
+	protected GameManager gameManager;
 
 	protected int gridWidth;
 	protected int gridHeight;
@@ -20,8 +21,8 @@ public class AStarScript : MonoBehaviour {
 	protected Vector3 start;
 	protected Vector3 goal;
 
-	public PathScript path;
-	Path pathPath;
+	public Path path;
+
 
 	protected PriorityQueue<Vector3> frontier;
 	protected Dictionary<Vector3, Vector3> cameFrom = new Dictionary<Vector3, Vector3>();
@@ -32,15 +33,17 @@ public class AStarScript : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
+		gameManager = GameObject.Find ("[GameManager]").GetComponent<GameManager> ();
+		Debug.Log (gameManager);
 		InitAstar();
 	}
 
 	protected virtual void InitAstar(){
-//		InitAstar(new PathScript(hueristic.gameObject.name, gridScript));
+		InitAstar(new Path(hueristic.gameObject.name, gameManager));
 	}
 
 
-	protected virtual void InitAstar(PathScript path){
+	protected virtual void InitAstar(Path path){
 		this.path = path;
 
 		start = gridScript.start;
