@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212338378936993952}
   - component: {fileID: 114696559708975666}
   - component: {fileID: 114809389325133220}
-  - component: {fileID: 114231267060767106}
+  - component: {fileID: 114225726279079326}
   m_Layer: 0
   m_Name: Chao
   m_TagString: Untagged
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114231267060767106
+--- !u!114 &114225726279079326
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridScript: {fileID: 0}
-  hueristic: {fileID: 114231267060767106}
+  hueristic: {fileID: 114225726279079326}
 --- !u!114 &114809389325133220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 00162698c298f4cce978ff7b8d207bf9, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

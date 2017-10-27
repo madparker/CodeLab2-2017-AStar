@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AStarScript : MonoBehaviour {
 
 	public GridScript gridScript;
-	public HueristicScript hueristic;
+	public ChaoHueristicScript hueristic;
 	protected int gridWidth;
 	protected int gridHeight;
 
@@ -23,6 +23,7 @@ public class AStarScript : MonoBehaviour {
 	protected virtual void Start () {
 		InitAstar(new Path(hueristic.gameObject.name, gridScript));
 	}
+		
 
 	protected virtual void InitAstar(Path path){
 		
